@@ -1,0 +1,29 @@
+[package]
+name = "light-switch"
+version = "0.1.0"
+authors = ["Brendan Ball <brendan@nomanini.com>"]
+edition = "2018"
+resolver = "2"
+
+[profile.release]
+opt-level = "s"
+
+[profile.dev]
+debug = true # Symbols are nice and they don't increase the size on Flash
+opt-level = "z"
+
+[features]
+default = ["native"]
+native = ["esp-idf-sys/native"]
+
+[dependencies]
+esp-idf-sys = { version = "0.28.1", features = ["binstart"] }
+esp-idf-hal = "0.29.4"
+embedded-hal = "0.2.6"
+esp-idf-svc = "0.34.1"
+embedded-svc = "0.15.4"
+
+
+[build-dependencies]
+embuild = "0.27"
+anyhow = "1"
