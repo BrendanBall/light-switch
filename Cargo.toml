@@ -13,7 +13,7 @@ debug = true # Symbols are nice and they don't increase the size on Flash
 opt-level = "z"
 
 [features]
-default = ["native"]
+# default = ["native"]
 native = ["esp-idf-sys/native"]
 
 [dependencies]
@@ -22,6 +22,9 @@ esp-idf-hal = "0.29.4"
 embedded-hal = "0.2.6"
 esp-idf-svc = "0.34.1"
 embedded-svc = "0.15.4"
+log = "0.4.14"
+anyhow = "1.0.52"
+# esp32c3 = "0.3.0"
 
 
 [build-dependencies]
