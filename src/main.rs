@@ -36,25 +36,25 @@ fn main() -> Result<()> {
     //env::set_var("RUST_BACKTRACE", "1");
 
 
-    #[allow(unused)]
-    let netif_stack = Arc::new(EspNetifStack::new()?);
-    #[allow(unused)]
-    let sys_loop_stack = Arc::new(EspSysLoopStack::new()?);
-    #[allow(unused)]
-    let default_nvs = Arc::new(EspDefaultNvs::new()?);
+    // #[allow(unused)]
+    // let netif_stack = Arc::new(EspNetifStack::new()?);
+    // #[allow(unused)]
+    // let sys_loop_stack = Arc::new(EspSysLoopStack::new()?);
+    // #[allow(unused)]
+    // let default_nvs = Arc::new(EspDefaultNvs::new()?);
 
-    #[allow(clippy::redundant_clone)]
-    #[cfg(not(feature = "qemu"))]
-    #[allow(unused_mut)]
-    let mut wifi_state = wifi::wifi(
-        netif_stack.clone(),
-        sys_loop_stack.clone(),
-        default_nvs.clone(),
-    );
-    match wifi_state {
-        Ok(_) => info!("Wifi connected"),
-        Err(err) => warn!("wifi failed: {}", err)
-    };
+    // #[allow(clippy::redundant_clone)]
+    // #[cfg(not(feature = "qemu"))]
+    // #[allow(unused_mut)]
+    // let mut wifi_state = wifi::wifi(
+    //     netif_stack.clone(),
+    //     sys_loop_stack.clone(),
+    //     default_nvs.clone(),
+    // );
+    // match wifi_state {
+    //     Ok(_) => info!("Wifi connected"),
+    //     Err(err) => warn!("wifi failed: {}", err)
+    // };
 
     thread::sleep(Duration::from_secs(5));
 
