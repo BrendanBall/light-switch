@@ -43,20 +43,23 @@ fn main() -> Result<()> {
     #[allow(unused)]
     let default_nvs = Arc::new(EspDefaultNvs::new()?);
 
+
     #[allow(clippy::redundant_clone)]
     #[cfg(not(feature = "qemu"))]
     #[allow(unused_mut)]
-    let mut wifi_state = wifi::wifi(
-        netif_stack.clone(),
-        sys_loop_stack.clone(),
-        default_nvs.clone(),
-    );
-    match wifi_state {
-        Ok(_) => info!("Wifi connected"),
-        Err(err) => warn!("wifi failed: {}", err)
-    };
+    thread::spawn(move || {
+        let mut wifi_state = wifi::wifi(
+            netif_stack.clone(),
+            sys_loop_stack.clone(),
+            default_nvs.clone(),
+        );
+        match wifi_state {
+            Ok(_) => info!("Wifi connected"),
+            Err(err) => warn!("wifi failed: {}", err)
+        };
+    });
 
-    thread::sleep(Duration::from_secs(5));
+    thread::sleep(Duration::from_secs(20));
 
     info!("hello world");
     Ok(())
